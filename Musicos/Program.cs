@@ -49,10 +49,7 @@ internal class Program
         Queen.Add(new Musico("Freddie Mercury"));
         Queen.Add(new Bajista("Bryan May", "Stratocaster"));
         Queen.Add(new Baterista("Roger Taylor","Tama"));
-        foreach(Musico m in Queen)
-        {
-            m.Saludo();
-            m.Toca();
-        }
+        foreach(Musico m in Queen) m.Saludo();
+        foreach(Musico m in Queen) m.Toca();
     }
 }
