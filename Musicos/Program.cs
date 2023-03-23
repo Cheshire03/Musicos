@@ -6,10 +6,14 @@
     {
         Nombre=n;
     }
-    
-    public void Saludo()
+    public virtual void GetSaludo()
     {
         Console.WriteLine($"hola soy {Nombre}");
+    }
+
+    public virtual void Saludo()
+    {
+        GetSaludo();
     }
     public /*virtual*/ abstract void Toca(); //los metodos abstractos, se delegan obligatoriamente a las clases heredadas
 
@@ -26,6 +30,14 @@ class Vocalista:Musico
     {
         Console.WriteLine($"{Nombre} canta en {Voz}");
     }
+    public override void GetSaludo()
+    {
+        base.GetSaludo() +" y soy vocalista";
+    }
+    public override void Saludo()
+    {
+        Console.WriteLine($"hola soy {Nombre} y soy cantante");
+    }
 }
 class Bajista:Musico
 {
@@ -39,6 +51,10 @@ class Bajista:Musico
     {
         Console.WriteLine($"{Nombre} tocando su {Bajo}");
     }
+    public override void Saludo()
+    {
+        Console.WriteLine($"hola soy {Nombre} y soy bajista");
+    }
 
 }
 class Baterista:Musico
@@ -51,6 +67,10 @@ public Baterista(string n,string bt):base(n)
 public override void Toca()
     {
         Console.WriteLine($"{Nombre} tocando su {Bateria}");
+    }
+public override void Saludo()
+    {
+        Console.WriteLine($"hola soy {Nombre} y soy baterista");
     }
 }
 internal class Program
