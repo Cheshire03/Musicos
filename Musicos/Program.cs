@@ -1,4 +1,4 @@
-﻿class Musico
+﻿abstract class Musico
 {
     public string Nombre{get;set;}
 
@@ -11,9 +11,20 @@
     {
         Console.WriteLine($"hola soy {Nombre}");
     }
-    public virtual void Toca()
+    public /*virtual*/ abstract void Toca(); //los metodos abstractos, se delegan obligatoriamente a las clases heredadas
+
+}
+class Vocalista:Musico
+{
+    public string Voz{get;set;}
+
+    public Vocalista(string n,string v):base(n)
     {
-        Console.WriteLine($"{Nombre} tocando su instrumento");
+        Voz=v;
+    }
+    public override void Toca()
+    {
+        Console.WriteLine($"{Nombre} canta en {Voz}");
     }
 }
 class Bajista:Musico
@@ -28,6 +39,7 @@ class Bajista:Musico
     {
         Console.WriteLine($"{Nombre} tocando su {Bajo}");
     }
+
 }
 class Baterista:Musico
 {
@@ -46,10 +58,14 @@ internal class Program
     private static void Main(string[] args)
     {
         List<Musico> Queen=new List<Musico>();
-        Queen.Add(new Musico("Freddie Mercury"));
+        Queen.Add(new Vocalista("Freddie Mercury","Baritono"));
         Queen.Add(new Bajista("Bryan May", "Stratocaster"));
         Queen.Add(new Baterista("Roger Taylor","Tama"));
         foreach(Musico m in Queen) m.Saludo();
         foreach(Musico m in Queen) m.Toca();
     }
 }
+
+// clases abstractas solo pueden generar referencias, no objetos
+// virtual da la opcion de redifinir métodos en subclases
+// override para redifinir un método de una clase heredada
